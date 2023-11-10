@@ -11,9 +11,6 @@ Background color can be changed similar to a RGB spot, the DMX addresses are 433
 
 """
 from tkinter import *
-# from tkinter import ttk
-# from PIL import Image,ImageTk
-# import os
 
 from pixelgui import Gui
 from oscola import OscOla
@@ -24,7 +21,6 @@ from oscola import OscOla
 
 
 # -----------------------------------------------------------------------
-# if __name__ == '__main__':
 
 w = Gui()
 oscola = OscOla ()
