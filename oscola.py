@@ -18,7 +18,7 @@ class OscOla:
     def __init__(self):
         self.__dmx  = [0 for i in range (512)] 
         self.dispatcher = dispatcher.Dispatcher()
-        self.dispatcher.map(OLAOSCSTRING , self.get_dmx)  # reads dmx values
+        self.dispatcher.map(OLAOSCSTRING , self.get_dmx)  # type: ignore # reads dmx values
         
         self.server = osc_server.BlockingOSCUDPServer \
                     (("0.0.0.0", 8000), self.dispatcher)

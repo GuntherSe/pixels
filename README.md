@@ -18,11 +18,16 @@ With the help of Open Lighting Architecture ([OLA](https://www.openlighting.org/
 
 [python-osc](https://pypi.org/project/python-osc/)
 
-    sudo apt install python3-tk
-    python3 -m pip install Pillow
+    sudo apt install python3-tk python3-venv
+    cd ~
+    python3 -m venv .venv
+    source .venv/bin/activate
     python3 -m pip install python-osc
+    python3 -m pip install Pillow
 
 **pixels** doesn't need an installation, just put all files of this repository into a folder of your choice, for example ~/Documents/python/pixels.
+
+### Install OLA
 
 OLA needs an installation, this can be done either with apt or by downloading the latest version from Github and compiling it. I'll describe both versions.
 
@@ -47,4 +52,8 @@ OLA needs an installation, this can be done either with apt or by downloading th
     I wrote a documentation of the steps you have to take. Have a look at Google groups here: https://groups.google.com/g/open-lighting/c/rDIbzhqnWxQ/m/W7c_xUznCAAJ and search for my contribution on 2020-07-14. Follow the steps until you find the line "At this point OLA is ready to use."
 
 
+### Configure OLA
 
+First, start the OLA Admin webpage: 127.0.0.1:9090
+
+Here you create a new Universe and patch an available input, for example Enttec USB DMX pro or a network DMX protocol like ArtNet. 
