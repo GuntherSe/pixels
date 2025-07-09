@@ -23,7 +23,7 @@ class OscOla:
         self.server = osc_server.BlockingOSCUDPServer \
                     (("0.0.0.0", 8000), self.dispatcher)
         self.server_thread = threading.Thread(target=self.server.serve_forever)
-        self.server_thread.setDaemon (True)
+        self.server_thread.daemon = True
         self.server_thread.start()
 
 

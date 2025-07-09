@@ -57,3 +57,12 @@ OLA needs an installation, this can be done either with apt or by downloading th
 First, start the OLA Admin webpage: 127.0.0.1:9090
 
 Here you create a new Universe and patch an available input, for example Enttec USB DMX pro or a network DMX protocol like ArtNet. 
+
+Pixels uses OSC to get input data. It listens to ola2screen on port 8000. This is the OSC information you have to tell OLA. Edit the config file ola-osc.conf (not sure where to find it? Have a look at the plugins at the OLA Admin webpage, it's probably /etc/ola/ola-osc.conf)
+
+    sudo nano /etc/ola/ola-osc.conf
+
+    Here: port_0_targets = 127.0.0.1:8000/ola2screen
+
+After savin the config file, restart the plugins, and pixels is ready for receiving data from your light-desk.
+

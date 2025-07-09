@@ -7,7 +7,8 @@
 
 import os, os.path
 import glob
-from tkinter import *
+# from tkinter import *
+import tkinter as tk
 from PIL import Image, ImageTk #, ImageFilter
 
 class Pictures:
@@ -49,7 +50,7 @@ class Pictures:
 
 
 if __name__ == '__main__':
-    root = Tk ()
+    root = tk.Tk ()
     pics = Pictures ("pictures") 
     # searchpath = os.path.join (pics.imagepath, "*.png")
     print (f"pictures: {pics.count()}")

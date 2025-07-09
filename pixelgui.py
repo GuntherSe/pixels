@@ -6,13 +6,19 @@ A Tkinter Gui for a fullscreen output. It combines DMX input with a set of 16 * 
 LED simulating section on a screen respective projector.
 
 """
-from tkinter import *
+# from tkinter import *
 # from tkinter import ttk
+import tkinter as tk
 
 import os
 from pictures import Pictures
 
 image_x, image_y = 100, 100
+
+def no_fx ():
+    """ initialization of FX function """
+    return
+
 
 # https://stackoverflow.com/questions/26286660/how-to-make-a-window-fullscreen-in-a-secondary-display-with-tkinter
 # https://stackoverflow.com/questions/7966119/display-fullscreen-mode-on-tkinter
@@ -37,7 +43,7 @@ class Gui:
     fullscreen = False
 
     def __init__(self, action = None):
-        self.root = Tk()
+        self.root = tk.Tk()
         # Keyboard bindings:
         self.root.bind("<F11>", self.toggleFullScreen)
         self.root.bind("f", self.toggleFullScreen)
@@ -46,7 +52,7 @@ class Gui:
         self.root.bind ("q", self.quit)
 
         self.root.geometry("640x360+30+30")
-        self.fx_func = None
+        self.fx_func = no_fx
 
         # https://stackoverflow.com/questions/24945467/python-tkinter-set-entry-grid-width-100
         self.root.grid_columnconfigure(0, weight=1)
@@ -59,9 +65,9 @@ class Gui:
         """ widgets for pixel screen 
         """
         self.root.update()
-        self.canvas = Canvas (self.root, background="black") 
+        self.canvas = tk.Canvas (self.root, background="black") 
         self.canvas.config (highlightthickness=0) # remove border
-        self.canvas.grid (column=0, row=0, sticky=(N, W, E, S))
+        self.canvas.grid (column=0, row=0, sticky="N, W, E, S")
 
         # geometry:
         self.cols = 16 # Anzahl der Pixel in einer Reihe
@@ -78,6 +84,8 @@ class Gui:
         # pixels:
         self.pixinfo = [Rgbpixel() for i in range (count)]
         self.pixels = [] # Liste der canvas-Polygone
+        # circles:
+        self.circles = []
         # images:
         self.pictures = Pictures ("pictures")
         self.images = [] # list of resized images, = canvas objects!
@@ -101,6 +109,15 @@ class Gui:
                 self.pixinfo[i].center[1] + rady,
                 tags=("pixel"),    # set tag 'pixel'
                 fill="#ff0000", outline="#000000"
+            ))
+            self.circles.append (self.canvas.create_oval (
+                self.pixinfo[i].center[0] - radx,
+                self.pixinfo[i].center[1] - rady,
+                self.pixinfo[i].center[0] + radx,
+                self.pixinfo[i].center[1] + rady,
+                tags=("circle"),
+                fill=("#00FF00"),
+                state="hidden"
             ))
             self.images.append (self.canvas.create_image (
                 self.pixinfo[i].center[0] - radx,
@@ -191,6 +208,11 @@ class Gui:
                                 v.center[1] + rady,
                                 v.center[0] - radx,
                                 v.center[1] + rady )
+            self.canvas.coords (self.circles[k],
+                                v.center[0] - radx,
+                                v.center[1] - rady,
+                                v.center[0] + radx,
+                                v.center[1] + rady )
             self.canvas.itemconfigure (self.images[k], 
                 image=self.pictures.resized[self.image_numbers[k]]) 
             # TODO: remember last picture in every position
@@ -245,6 +267,15 @@ if __name__ == "__main__":
     def splinestepoff ()    :
         w.canvas.itemconfigure ("pixel", smooth=0)
 
+    def activatecircles ():
+        w.canvas.itemconfigure ("pixel", state="hidden")
+        w.canvas.itemconfigure ("circle", state="normal")
+        
+    def activatepixels ():
+        w.canvas.itemconfigure ("pixel", state="normal")
+        w.canvas.itemconfigure ("circle", state="hidden")
+        
+
 
     w.root.bind ("0", lambda e: splinestepoff())
     w.root.bind ("1", lambda e: setsplinestep(1))
@@ -253,6 +284,8 @@ if __name__ == "__main__":
     w.root.bind ("4", lambda e: setsplinestep(4))
     w.root.bind ("b", lambda e: w.blur())
     w.root.bind ("n", lambda e: w.unblur())
+    w.root.bind ("c", lambda e: activatecircles())
+    w.root.bind ("v", lambda e: activatepixels())
 
     w.canvas.itemconfigure ("pixel", smooth=1, splinesteps=1,
                 width=3)

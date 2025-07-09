@@ -7,6 +7,12 @@ from oscola import OscOla
 # https://stackoverflow.com/questions/26286660/how-to-make-a-window-fullscreen-in-a-secondary-display-with-tkinter
 # https://stackoverflow.com/questions/7966119/display-fullscreen-mode-on-tkinter
 
+def no_fx ():
+    """ initialization of FX function """
+    return
+
+
+
 class Gui:
     fullscreen = False
 
@@ -18,7 +24,7 @@ class Gui:
         self.root.bind("<Control-w>", self.quit)
         self.root.bind ("q", self.quit)
         self.root.geometry("640x360+30+30")
-        self.fx_func = None
+        self.fx_func = no_fx
 
 
     def toggleFullScreen(self, event):
