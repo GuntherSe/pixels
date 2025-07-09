@@ -4,4 +4,4 @@
 source /home/gunther/.venv/bin/activate
 
 cd ~/Dokumente/python/pixels
-python pixels.py
+python circles.py
