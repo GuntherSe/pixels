@@ -133,6 +133,6 @@ TODO: instructions ...
 
 ## And now ...
 
-work on your lighting desk and have fun!
+Create a show for the projector on your lighting desk and have fun!
 
 
