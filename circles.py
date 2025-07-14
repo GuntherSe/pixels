@@ -10,7 +10,7 @@ correspond to 144 RGB spots. This uses 432 DMX addresses, starting from 1.
 Background color can be changed similar to a RGB spot, the DMX addresses are 433-435.
 
 """
-from tkinter import * # type: ignore
+import tkinter as tk # type: ignore
 
 from pixelgui import Gui
 from oscola import OscOla

@@ -27,9 +27,10 @@ oscola = OscOla ()
 
 def colorpixels ():
     """ Farbe der 16x9 Pixel ändern, benutzt die ersten 432 DMX Werte.
-    more_dmx: DMX 433 acts as a switch: if the value > 127 then the following 
+
+    background color (DMX 433-435) 
+    more_dmx: DMX 436 acts as a switch: if the value > 127 then the following 
     DMX values are evaluated for 
-        background color (DMX 434-436) 
         pixel x-size (DMX 437) 
         pixel y-size (DMX 438)
         smoothness (DMX 439):   
@@ -57,14 +58,14 @@ def colorpixels ():
     """
 
     dmxinfo = oscola.get_channels (1,511) # get the universe
-    more_dmx = dmxinfo[432]
+    more_dmx = dmxinfo[435]
     width, height = w.winsize ()
     radx_base = width/32 # Pixelbreite = 2*radx
     rady_base = height/18 # Pixelhöhe = 2*rady
+    bkcol = f"#{dmxinfo[432]:02x}{dmxinfo[433]:02x}{dmxinfo[434]:02x}"
 
     if more_dmx > 127:
         # background color:
-        bkcol = f"#{dmxinfo[433]:02x}{dmxinfo[434]:02x}{dmxinfo[435]:02x}"
         # pixel radius:
         w.radx_mod = dmxinfo[436]
         w.rady_mod = dmxinfo[437]
@@ -109,7 +110,6 @@ def colorpixels ():
             
 
     else:
-        bkcol = "black"
         radx = radx_base
         rady = rady_base
         smoothtoggle = 1

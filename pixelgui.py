@@ -47,7 +47,7 @@ class Gui:
         # Keyboard bindings:
         self.root.bind("<F11>", self.toggleFullScreen)
         self.root.bind("f", self.toggleFullScreen)
-        self.root.bind("<Alt-Return>", self.toggleFullScreen)
+        # self.root.bind("<Alt-Return>", self.toggleFullScreen)
         self.root.bind("<Control-w>", self.quit)
         self.root.bind ("q", self.quit)
 
