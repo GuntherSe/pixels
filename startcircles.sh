@@ -4,7 +4,12 @@
 # OLA reload (ArtNet might not be available):
 curl http://127.0.0.1:9090/reload
 
-source /home/$USER/.venv/bin/activate
+source $HOME/.venv/bin/activate
 
-cd ~/Dokumente/python/pixels
+if [ -d "$HOME/Dokumente" ]; then
+  cd $HOME/Dokumente/python/pixels
+else
+  cd $HOME/Documents/python/pixels
+fi
+
 python circles.py
