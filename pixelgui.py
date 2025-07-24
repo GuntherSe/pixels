@@ -139,9 +139,10 @@ class Gui:
         self.fullscreen = True
 
         if os.name == "posix":
-            width = self.root.winfo_screenwidth ()
-            height = self.root.winfo_screenheight ()
-            self.root.geometry(f"{width}x{height}+30+30")
+            # width = self.root.winfo_screenwidth ()
+            # height = self.root.winfo_screenheight ()
+            geometry = self.root.winfo_geometry ()
+            self.root.geometry (geometry)
             self.root.attributes ("-fullscreen", True)
             self.root.update()
         else:
