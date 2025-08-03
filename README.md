@@ -25,6 +25,8 @@ With the help of Open Lighting Architecture ([OLA](https://www.openlighting.org/
     python3 -m pip install python-osc
     python3 -m pip install Pillow
 
+If you are planning to use **pixels** on a Raspberry PI, then you should read the following note: **Tkinter** is at the moment not running properly on the Wayland GUI, you have to configure the PI to use the X11 desktop.
+
 **pixels** doesn't need an installation, just put all files of this repository into a folder of your choice, for example ~/Documents/python/pixels. For your convenience it's recommended to set the execute flag on the shell scripts, then you can start the scripts quicker:
 
     chmod +x *.sh
@@ -97,7 +99,7 @@ I use Art-Net to transfer data from the lightdesk to **pixels**. Have a look in 
 
 ### Third step:
 
-We are almost ready to take off. We quit the **colorscreen** script andstart the **circles** script now:
+We are almost ready to take off. We quit the **colorscreen** script and start the **circles** script now:
 
     bash ~/Documents/python/pixels/startcircles.py
 
